@@ -1,0 +1,18 @@
+<p>srovnani works!</p>
+
+    <div class="row" *ngFor="let item of routeResolveData?.items" style="background-color: #FFF; padding: 10px;">
+        <div class="col-4">
+            <div class="image-shell">
+            <img [src]="item?.image" alt="Sample Image" style="max-width: 200px; width: 100%; height: 100%;" />
+            </div>
+        </div>
+        <div class="col-8">
+            <h3 class="text-shell" style="margin-top: 0px; min-height: 35px;" [ngClass]="{'text-loaded': item?.title}">
+                {{ item?.title }}
+            </h3>
+            <p class="text-shell" style="min-height: 35px;" [ngClass]="{'text-loaded': item?.title}">
+                {{ item?.description }}
+            </p>
+        </div>
+    </div>
+
