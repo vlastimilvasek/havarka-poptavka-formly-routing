@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControlOptions, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
-import { tap } from 'rxjs/operators';
-import { AlertService, DataService, Kalkulace, Store } from '../core';
+import { AlertService, DataService, ParamsService, Seznamy, IVozidla } from '../core';
+import { BsDatepickerConfig, BsLocaleService } from 'ngx-bootstrap/datepicker';
 // import { slideRightLeftAnimation } from '../core/animations';
 
 @Component({
@@ -12,103 +11,102 @@ import { AlertService, DataService, Kalkulace, Store } from '../core';
 })
 export class ZadaniUdajeComponent implements OnInit {
 
-  private subscription: Subscription;
   form!: FormGroup;  
-  store: Observable<Store>; 
+  data: IVozidla; 
+  lists: Seznamy;
   submitted = false;
   loading = false;
+  layout;
 
-  layout = {
-    grid: {
-        column : 'col-lg-6',
-        label : 'col-sm-5',
-        input : 'col-sm-7',
-        offset : 'offset-sm-5',
-        label2 : 'col-lg-8 col-sm-5',
-        input2 : 'col-lg-4 col-sm-7',
-        column1 : 'order-3 order-md-0 col-md-7 col-lg-6 col-xl-7',
-        column2 : 'order-2 col-md-5 col-lg-5 offset-lg-1 col-xl-4',
-        info1 : 'col-sm-3 col-md-12',
-        info2 : 'col-sm-9 col-md-12',
-    },
-    table : true,
-    helper : 'none',
-    produktCollapsed : {},
-    filtrCollapsed : true,
-    controls : {
-        druh: null
-    },
-    prvniNapoveda : true,
-    form_r : {
-        loading : false,
-        error : false
-    },
-    progress: 0,
-    kalkulaceAktivni : false,
-    kalkulaceMailOdeslan : false,
-    dataNacitani : false
-  };
-
-  lists = {
-    znacka: [],
-    model: [],
-    druh: [],
-    rok_vyroby: [],
-    palivo: [],
-    uziti: [],
-    najezd: [],
-    pojistnik: [],
-    provozovatel: [],
-    psc: [],
-    castiobce: [],
-    ppsc: [],
-    pcastiobce: []    
-  };  
+  bsConfig: Partial<BsDatepickerConfig>;
+  minDate: Date;
+  maxDate: Date;   
 
   constructor(
     private route: ActivatedRoute,    
     private router: Router,   
     private formBuilder: FormBuilder,       
     private dataService: DataService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private paramsService: ParamsService,
+    private localeService: BsLocaleService    
   ) { }
 
   ngOnInit() {
+    this.bsConfig = Object.assign({}, { containerClass: 'theme-default', adaptivePosition: false, dateInputFormat: 'D.M.YYYY' });
+    this.minDate = new Date();
+    this.maxDate = new Date();
+    this.minDate.setDate(this.minDate.getDate() - 365*100);
+    this.maxDate.setDate(this.maxDate.getDate() + 30);
+    this.localeService.use('cs');
+
     const formOptions: AbstractControlOptions = {};
     this.form = this.formBuilder.group({
-      objem_motoru: ['', Validators.required],
-      vykon_motoru: ['', Validators.required],
-      hmotnost: ['', Validators.required],            
-      palivo: ['', Validators.required],
-      uziti: ['', Validators.required],            
+      znacka: [null, Validators.required],
+      model: [null, Validators.required],      
+      palivo: [null, Validators.required],
+      uziti: [null, Validators.required],
+      najezd: [null, Validators.required],
+      rz: [null], 
+      vin: [null],       
+      objem_motoru: [null, Validators.required],
+      vykon_motoru: [null, Validators.required],
+      hmotnost: [null, Validators.required],            
+      uvedenidp: [new Date(), Validators.required],
+      cena: [500000, Validators.required],  
     }, formOptions);
 
-    this.store = this.dataService.store.pipe(
-      tap(store => {
-        this.form.patchValue(store.data.vozidlo);
-        this.lists = store.lists;
-      })
-    );    
+    this.data = this.dataService.data;
+    this.form.patchValue(this.data.vozidlo);
+    this.lists = this.paramsService.lists;
+    this.layout = this.paramsService.layout;
+
   }  
 
   get f() { return this.form.controls; }  
 
   onSubmit() {
     this.submitted = true;
-
+    // console.log('UDAJE form ', this.form);
     if (this.form.invalid) {
         return;
     }
-    this.loading = false;
     this.updateVozidlo();
-
   }  
 
   private updateVozidlo() {
-    this.dataService.updateVozidlo(this.form.value);
-    this.alertService.success('Vozidlo updated', { keepAfterRouteChange: true });
-    this.router.navigate(['./udaje'], { relativeTo: this.route });
-    this.loading = false;
-  }  
+    this.dataService.data.vozidlo.znacka = this.form.value.znacka;
+    this.dataService.data.vozidlo.model = this.form.value.model;
+    this.dataService.data.vozidlo.palivo = this.form.value.palivo;
+    this.dataService.data.vozidlo.uziti = this.form.value.uziti;
+    this.dataService.data.vozidlo.najezd = this.form.value.najezd;    
+    this.dataService.data.vozidlo.rz = this.form.value.rz;
+    this.dataService.data.vozidlo.vin = this.form.value.vin;
+    this.dataService.data.vozidlo.objem_motoru = this.form.value.objem_motoru;
+    this.dataService.data.vozidlo.vykon_motoru = this.form.value.vykon_motoru;
+    this.dataService.data.vozidlo.hmotnost = this.form.value.hmotnost;
+    this.dataService.data.vozidlo.uvedenidp = this.form.value.uvedenidp;
+    this.dataService.data.vozidlo.cena = this.form.value.cena;
+
+    this.router.navigate(['../osoby'], { relativeTo: this.route });
+  }
+
+  modelList( change: boolean = false ): void {
+    if (change) { this.form.value.model = null; }
+    if (this.form.value.znacka) {
+        const options = [];
+        const modely = this.paramsService.lists.model.filter( opt => opt.znacka === this.form.value.znacka );
+        // console.log(modely);
+        modely.forEach( opt => {
+            options.push( {
+                label: opt.label,
+                value: opt.value
+            });
+        });
+        if (modely.length === 1) { this.form.value.model = modely[0].value; }
+        // console.log(options);
+        this.lists.model = options;
+    }
+}  
 
 }

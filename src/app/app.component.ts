@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { DataService, Kalkulace, Store } from './core';
-// import { TranslateService } from '@ngx-translate/core';
-// import { ActivatedRoute } from '@angular/router';
+import { DataService, ParamsService, IVozidla, Vozidla } from './core';
 import { slideRightLeftAnimation } from './core/animations';
 
 @Component({
@@ -16,20 +13,17 @@ export class AppComponent {
   title = 'havarka';
   layouthelper = true;
 
-  private subscription: Subscription;
-  data: Kalkulace;
+  data: IVozidla;
 
   constructor( 
-    private dataService: DataService
+    private dataService: DataService,
+    private paramsService: ParamsService
   ) {}
 
   ngOnInit() {
-    this.dataService.initStore();
-    this.subscription = this.dataService.store.subscribe(
-      (store: Store) => {
-        this.data = store.data;
-      }
-    );
+    this.data = new Vozidla(null);
+    this.dataService.data = this.data;
+    this.paramsService.initParams();
   }  
 
   prepareRoute(outlet: RouterOutlet) {

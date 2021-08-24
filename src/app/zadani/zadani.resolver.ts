@@ -6,10 +6,10 @@ import {
 } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Kalkulace, DataService } from '../core';
+import { IVozidla, DataService } from '../core';
 
 @Injectable({providedIn: 'root'})
-export class ZadaniResolver implements Resolve<Kalkulace> {
+export class ZadaniResolver implements Resolve<IVozidla> {
   
   constructor(
     private dataService: DataService,

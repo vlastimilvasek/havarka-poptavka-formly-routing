@@ -5,6 +5,8 @@ import { SharedModule } from '../shared';
 import { ZadaniRoutingModule } from './zadani-routing.module';
 import { ZadaniComponent } from '../zadani/zadani.component';
 import { ZadaniUdajeComponent } from '../zadani/zadani-udaje.component';
+import { ZadaniOsobyComponent } from '../zadani/zadani-osoby.component';
+import { ZadaniRozsahComponent } from '../zadani/zadani-rozsah.component';
 
 @NgModule({
   imports: [
@@ -14,7 +16,9 @@ import { ZadaniUdajeComponent } from '../zadani/zadani-udaje.component';
   ],  
   declarations: [
     ZadaniComponent,
-    ZadaniUdajeComponent
+    ZadaniUdajeComponent,
+    ZadaniOsobyComponent,
+    ZadaniRozsahComponent    
   ]
 })
 export class ZadaniModule { }

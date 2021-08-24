@@ -1,23 +1,25 @@
 <div class="text-center">
     <h1 class="contentheading">{{ 'UVOD.TITLE' | translate }}</h1>
     <p>{{ 'UVOD.INTRO' | translate }}</p>
-    <p><span [outerHTML]="'UVOD.INTRO2' | translate"></span></p>
-    <form *ngIf="store | async; else loading" [formGroup]="form" (ngSubmit)="onSubmit()" class="form-inline justify-content-center">
+    <p><span [innerHtml]="'UVOD.INTRO2' | translate"></span></p>
+
+    <div *ngIf="loading">
+        <div class="progress mb-4" style="height: 3px;">
+            <div class="progress-bar bg-success" role="progressbar" [style.width.%]="progress" aria-valuemin="0"
+            aria-valuemax="100"></div>
+        </div>
+    </div>
+    
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-inline justify-content-center">
         <label class="sr-only" for="vozidlo.rz">{{ 'UVOD.RZ.LABEL' | translate }}</label>
-        <input type="text" formControlName="rz" class="form-control mb-4 mr-2" id="vozidlo.rz"
+        <input type="text" [readonly]="loading" formControlName="rz" class="form-control mb-4 mr-2" id="vozidlo.rz"
             [ngClass]="{ 'is-invalid': submitted && f.rz.errors }"
             placeholder="{{ 'UVOD.RZ.PLACEHOLDER' | translate }}">
          
-        <button type="submit" class="btn btn-success mb-4 mr-2">{{ 'UVOD.SUBMIT' | translate }}</button>
+        <button type="submit" [disabled]="loading" class="btn btn-success mb-4 mr-2">{{ 'UVOD.SUBMIT' | translate }}</button>
         <a routerLink="/zadani/udaje" class="btn btn-secondary mb-4">{{ 'UVOD.CANCEL' | translate }}</a>
         <div *ngIf="submitted && f.rz.errors" class="invalid-feedback">
             <div *ngIf="f.rz.errors.required">RZ is required</div>
         </div> 
-    </form>
-
-    <ng-template #loading>
-        Loading data...
-      </ng-template>    
+    </form> 
 </div>
-
-<pre>{{ store | async | json }}</pre>

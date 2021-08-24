@@ -1,3 +1,4 @@
+<!--
 <h1>Havárka</h1>
 <div id="layoutHelper" [ngStyle]="{'display': layouthelper}" >
   <div class="visible-xl text-center alert alert-success" role="alert">Rozlišení XL</div>
@@ -6,11 +7,15 @@
   <div class="visible-sm text-center alert alert-primary" role="alert">Rozlišení SM</div>
   <div class="visible-xs text-center alert alert-danger" role="alert">Rozlišení XS</div>
 </div>
+-->
 
 <app-prubeh></app-prubeh>
+<alert></alert>
 
-<div [@slideRightLeftAnimation]="prepareRoute(outlet)" >
+<div [@slideRightLeftAnimation]="prepareRoute(outlet)" style="min-height:500px" >
   <router-outlet #outlet="outlet"></router-outlet>
 </div>
 
+<!--
 <pre>{{ data | json }}</pre>
+-->

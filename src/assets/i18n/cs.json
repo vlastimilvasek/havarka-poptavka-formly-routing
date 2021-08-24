@@ -20,7 +20,9 @@
 	        "UDAJE": "Pojistka",
 	        "OBJEKT": "Vozidlo",
             "OSOBNI": "Osobní údaje",
-	        "REKAPITULACE": "Rekapitulace"
+            "RIZIKA": "Rizika",			
+	        "REKAPITULACE": "Rekapitulace",
+			"SHRNUTI": "Shrnutí"
 		},
         "BUTTONS": {     
 	        "SROVNAT": "Srovnat nabídky pojišťoven",
@@ -67,7 +69,39 @@
 		},		
 		"SUBMIT": "Najít",
 		"CANCEL": "Není k dispozici"
-	},	
+	},
+    "RIZIKA": {
+		"TITLE": "Zvolte rizika, která má pojištění krýt",
+        "HAV": {
+	        "LABEL": "Havárie, nehoda",
+	        "HINT": "<strong>Dopravní nehoda</strong> je nahodilá událost, při které se poškodí nebo zničí pojištěné věci nebo jejich části kvůli působení vnějších sil, např. střetem, nárazem nebo pádem vozidla."
+		},
+        "ODC": {
+	        "LABEL": "Krádež, vandalismus",
+	        "HINT": "<strong>Odcizení</strong> znamená, že vám vozidlo nebo jeho část někdo ukradne nebo uloupí. Důležitou podmínkou je, že pachatel musí překonat nějakou jistící překážku, tedy zámek nebo jiné opatření chránící vozidlo před odcizením. To musí udělat vlastním tělem, nástrojem, který není určený k otevření vozidla, originálním klíčem nebo duplikátem, kterých se zmocnil krádeží nebo loupeží, nebo se do vozidla dostal při loupeži.<br /><strong>Vandalismus</strong> znamená, že vám vozidlo nebo jeho části někdo poškodil nebo zničil. Důležitou podmínkou je, že to musí udělat úmyslně. Pokud vám tedy někdo například omylem narazí nákupním vozíkem do auta nebo škoda viditelně vznikne střetem nebo nárazem (např. při nesprávném otáčení, couvání), je potřeba mít sjednané riziko havárie.<br />Škody z vandalismu musíte ihned po zjištění nahlásit policii, abyste měli právo na jejich proplacení."
+		},
+        "ZVER": {
+	        "LABEL": "Střet se zvířaty",
+	        "HINT": "<strong>Střet se zvířaty</strong> je nahodilá událost, při které jedoucí vozidlo narazí do zvířete. V tomto případě je potřeba ihned nehodu nahlásit policii, abyste měli právo na proplacení škod."
+		},
+        "ZIVEL": {
+	        "LABEL": "Přírodní nebezpečí, živly",
+	        "HINT": "<strong>Přírodní nebezpečí</strong> znamená nahodilou událost, při které škoda vznikla kvůli požáru, výbuchu, úderu blesku, pádu předmětu, včetně letadla, povodni, záplavě, vichřici, krupobití, sesuvu půdy, zřícení skal, pádu lavin, zemětřesení, tíze sněhu nebo námrazy."
+		},
+        "POV": {
+	        "LABEL": "Sjednat společně s povinným ručením",
+	        "HINT": "Sjednání havarijního pojištění na jedné pojistné smlouvě spolu s povinným ručením doporučujeme, většinou lze dosáhnout na vyšší obchodní slevy, bonusy apod."
+		},
+        "SPOL": {
+	        "LABEL": "Preferovaná spoluúčast",
+	        "HINT": "Spoluúčast je&nbsp;částka,&nbsp;kterou se&nbsp;klient podílí na&nbsp;vyplacení škody. Pokud je škoda například 20&nbsp;000&nbsp;Kč a&nbsp;spoluúčast&nbsp;1000&nbsp;Kč, klient se touto tisícikorunou podílí na škodě a reálně tedy dostane vyplaceno 19&nbsp;000&nbsp;Kč. Výše spoluúčastí má&nbsp;vliv i&nbsp;na&nbsp;cenu pojistky. Čím vyšší spoluúčast, tím&nbsp;levnější pojistka.<br />Havarijní pojištění se nejčastěji sjednává s 5% spoluúčastí, lze však zvolit i vyšší nebo naopak nižší spoluúčast.",
+			"VALUE": {
+				"1": "Nízká",
+				"5": "5%, min. 5000 Kč",
+				"10": "Vyšší (10%/20%)"
+			}
+		}									
+	},			
     "ZADANI": {
         "POJISTENI": {    
 	        "TITLE": "Jaký druh pojištění potřebujete?"
@@ -212,6 +246,9 @@
 		}										
     },
     "VOZIDLO": {
+		"IDENTIFIKACE": "Identifikace vozidla",
+		"UDAJEVTP": "Údaje podle technického průkazu",
+		"UDAJESTAV": "Další informace o vozidle",
         "DRUH": {    
 	        "LABEL": "Druh vozidla",
 	        "HINT": ""
@@ -224,9 +261,15 @@
 	        "LABEL": "Model",
 	        "HINT": ""
         },
-        "ROKVYROBY": {    
-	        "LABEL": "Rok výroby",
-	        "HINT": ""
+        "SPECIFIKACE": {    
+	        "LABEL": "Specifikace",
+			"PLACEHOLDER": "např. 2.0 TDi",
+	        "HINT": "Zadejte bližší označení vozidla. U druhů vozidel, kde není na výběr značka a model, zadejte kompletní označení. Například u vozíku: Agados NP 3."
+        },		
+        "UVEDENIDP": {    
+	        "LABEL": "Uvedení do provozu",
+			"PLACEHOLDER": "např. 15.6.2015",
+	        "HINT": "Zadejte nebo vyberte datum prvního uvedení vozidla do provozu. Nemáte-li přesný údaj k dispozici, zadejte 1.7. a rok výroby."
         },
         "PALIVO": {    
 	        "LABEL": "Palivo",
@@ -251,11 +294,42 @@
 			"PLACEHOLDER": "např. 10 000 km",
 	        "HINT": "Vyberte, kolik km ročně s vozidlem asi tak najedete. Některé pojišťovny (Pillow, Allianz) stanovují cenu s ohledem na nájezd. Počítejte s nutností evidovat a dokládat stav tachometru."
         },
+        "CENA": {    
+	        "LABEL": "Cena vozidla s DPH",
+			"PLACEHOLDER": "např. 250 000 Kč",
+	        "HINT": "Zadejte hodnotu vozidla s DPH. Tento údaj potřebujeme pro případ havarijního pojištění a některá připojištění. Nemáte-li přesný údaj k dispozici (třeba z faktury u nově pořizovaného vozidla), zadejte aspoň odhad - následně cenu upřesníme."
+        },		
 		"HMOTNOST": {    
 	        "LABEL": "Celková hmotnost",
 			"PLACEHOLDER": "např. 1890",
-	        "HINT": "Uveďte nejvyšší technicky přípustnou hmotnost. Ve velkém technickém průkazu se jedná o řádek F1."
-        }                
+	        "HINT": "Uveďte nejvyšší technicky přípustnou hmotnost. Ve&nbsp;velkém technickém průkazu se&nbsp;jedná o&nbsp;řádek&nbsp;F1."
+        },
+		"RZ": {    
+	        "LABEL": "Registrační značka",
+			"ISSUED": "přidělena",
+			"PLACEHOLDER": "např. 1H12233",
+	        "HINT": "Zadejte registrační značku (dříve SPZ) bez mezer (je-li již přidělena)."
+        },
+		"VTP": {    
+	        "LABEL": "Velký techn. průkaz",
+			"ISSUED": "vydán",
+			"PLACEHOLDER": "např. AB123456",
+	        "HINT": "Zadejte sérii a číslo velkého technického průkazu bez mezer (je-li již vydán)."
+        },
+		"VIN": {    
+	        "LABEL": "VIN (číslo karoserie)",
+			"PLACEHOLDER": "např. TMB45678901234567",
+	        "HINT": "Vyplňte bez mezer. VIN má 17 znaků, u starších vozidel s výrobním číslem doplňte na začátek nuly."
+        },		
+		"ZABEZPECENI": {    
+	        "TITLE": "Zabezpečení",			
+	        "IMOB": "",
+			"MECH": "",
+	        "SKLO": "",
+	        "ALARM": "",
+			"PASIV": "",
+	        "AKTIV": ""			
+        }		
     },
     "ADRESA": {
 		"PSC": {
@@ -324,9 +398,9 @@
 	        "HINT": ""
 		},
         "JMENO": {
-	        "LABEL": "Jméno",
-	        "PLACEHOLDER": "Jan",
-	        "HINT": "Vyplňte jméno podle skutečnosti."
+	        "LABEL": "Jméno a příjmení",
+	        "PLACEHOLDER": "Jan Novák",
+	        "HINT": "Vyplňte jméno a příjmení podle skutečnosti."
 		},
         "PRIJMENI": {
 	        "LABEL": "Příjmení",
@@ -389,26 +463,15 @@
 		}        				
     },
     "ZAVER": {
-        "TITLE": "Skoro hotovo! Děkujeme",
-	    "CELL1": {
-	        "TITLE": "Smlouva úspěšně sjednána. Děkujeme.",
-	        "TEXT": "Vaše pojištění odpovědnosti bylo úspěšně sjednáno. Děkujeme za Vámi projevenou důvěru."
+	    "PODEKOVANI": {
+	        "TITLE": "Děkujeme za Vaši poptávku havarijního pojištění."
 		},
-	    "CELL2": {
-	        "TITLE": "Ještě chviličku ...",
-	        "TEXT": "Ověřujeme údaje a připravujeme dokumenty. Prosíme o chvilku strpení."
+		"NACITANI": "Prosíme o&nbsp;chvilku strpení, ukládají se data.",	
+		"OK": {
+			"TEXT": "V co nejkratší době na&nbsp;Váš email <strong>{{email}}</strong> zašleme vypracované nabídky pojištění vozidla, případně se&nbsp;s&nbsp;Vámi spojíme kvůli upřesnění údajů nebo&nbsp;parametrů pojištění."
 		},
-	    "CELL3": {
-	        "TITLE": "Smlouva a dokumenty",
-	        "TEXT": "Připravíme pro Vás návrh pojistné smlouvy a zašleme Vám ho ke kontrole na email <strong>{{email}}</strong>."
-        },
-	    "CELL4": {
-	        "TITLE": "Odsouhlasení a zaslání",
-	        "TEXT": "Po Vašem odsouhlasení, obdržíte poštou pojistné smlouvy, které stačí podepsat/zaplatit a zaslat zpět na adresu uvedenou v průvodním dopise."
-		},
-	    "CELL5": {
-	        "TITLE": "Servis",
-	        "TEXT": "V případě potřeby nás neváhejte kontaktovat. Vždy Vám připravíme pojištění na míru dle Vašich aktuálních potřeb. Těšíme se na další spolupráci. Jsme tu pro Vás! Srovnávač.cz"
-		}	        			
-	}         
+		"CHYBA": {
+			"TEXT": "<strong>Jejda.</strong> Někde se stala chyba.<br />Zkuste prosím zkontrolovat zadané údaje a znovu odeslat formulář - třeba jen vypadlo spojení s&nbsp;naším serverem.<br />Bude-li chyba přetrvávat, neváhejte nás prosím kontaktovat telefonicky."
+		}      			
+	}          
 }

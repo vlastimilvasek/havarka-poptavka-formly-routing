@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { ZadaniComponent } from './zadani.component';
 import { ZadaniResolver } from './zadani.resolver';
 import { ZadaniUdajeComponent } from './zadani-udaje.component';
+import { ZadaniOsobyComponent } from './zadani-osoby.component';
+import { ZadaniRozsahComponent } from './zadani-rozsah.component';
 
 const routes: Routes = [
   {
@@ -17,7 +19,17 @@ const routes: Routes = [
     path: 'udaje',
     component: ZadaniUdajeComponent,
     data: { animation: 1 }
-  }  
+  },
+  {
+    path: 'osoby',
+    component: ZadaniOsobyComponent,
+    data: { animation: 2 }
+  },
+  {
+    path: 'rozsah',
+    component: ZadaniRozsahComponent,
+    data: { animation: 3 }
+  }      
 ];
 
 @NgModule({
