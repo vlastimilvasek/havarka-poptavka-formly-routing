@@ -44,6 +44,7 @@ export class ZaverComponent implements OnInit {
               console.log('sjednat - resp: ', sjednani);
               this.loading = false;
               this.sjednani = sjednani;
+              this.GAEvent('HAV', 'Kalkulace', 'Poptávka na email', 1);
               this.dataService.data = new Vozidla(null);
           },
           error: (e) => {
@@ -55,5 +56,13 @@ export class ZaverComponent implements OnInit {
     }
   }  
 
+  GAEvent(cat: string, label: string, action: string, val: number): void {
+    (<any>window).ga('send', 'event', {
+        eventCategory: cat,
+        eventLabel: label,
+        eventAction: action,
+        eventValue: val
+    });
+  }  
 
 }

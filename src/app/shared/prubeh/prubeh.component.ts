@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-prubeh',
+  selector: 'prubeh',
   templateUrl: './prubeh.component.html'
 })
 export class PrubehComponent implements OnInit {

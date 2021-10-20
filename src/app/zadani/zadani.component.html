@@ -17,9 +17,9 @@
             placeholder="{{ 'UVOD.RZ.PLACEHOLDER' | translate }}">
          
         <button type="submit" [disabled]="loading" class="btn btn-success mb-4 mr-2">{{ 'UVOD.SUBMIT' | translate }}</button>
-        <a routerLink="/zadani/udaje" class="btn btn-secondary mb-4">{{ 'UVOD.CANCEL' | translate }}</a>
+        <a routerLink="/udaje" class="btn btn-secondary mb-4">{{ 'UVOD.CANCEL' | translate }}</a>
         <div *ngIf="submitted && f.rz.errors" class="invalid-feedback">
-            <div *ngIf="f.rz.errors.required">RZ is required</div>
+            <div *ngIf="f.rz.errors.required">Je-li přidělena RZ, zadejte ji.</div>
         </div> 
     </form> 
 </div>

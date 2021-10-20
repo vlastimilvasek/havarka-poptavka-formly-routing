@@ -304,8 +304,8 @@ constructor(data: any) {
       this.vozidlo.cena = Number(data.vozidlo.cena)|| null
       this.vozidlo.objem_motoru = Number(data.vozidlo.objem_motoru)|| null
       this.vozidlo.vykon_motoru = Number(data.vozidlo.vykon_motoru) || null,
-      this.vozidlo.uvedenidp = data.vozidlo.uvedenidp || new Date(),
-      this.vozidlo.uvedenidp = new Date(this.vozidlo.uvedenidp)
+      this.vozidlo.uvedenidp = new Date(data.vozidlo.uvedenidp ? data.vozidlo.uvedenidp : '2017-07-01') || null,
+      // this.vozidlo.uvedenidp = new Date(this.vozidlo.uvedenidp)
       this.vozidlo.stav_tachometr = Number(data.vozidlo.stav_tachometr) || null
       this.vozidlo.najezd = Number(data.vozidlo.najezd) || null        
       this.vozidlo.hmotnost = Number(data.vozidlo.hmotnost) || null

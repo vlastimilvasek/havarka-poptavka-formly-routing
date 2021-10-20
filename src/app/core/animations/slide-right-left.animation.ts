@@ -1,34 +1,63 @@
 // import the required animation functions from the angular animations module
-import { trigger, state, group, query, animate, transition, style } from '@angular/animations';
+import { trigger, group, query, animate, transition, style } from '@angular/animations';
+import {
+    slideInRightOnEnterAnimation,
+    slideInUpOnEnterAnimation,
+    slideInDownOnEnterAnimation,
+    slideInLeftOnEnterAnimation,
+    slideOutUpOnLeaveAnimation,
+    slideOutDownOnLeaveAnimation,
+    slideOutLeftOnLeaveAnimation,
+    slideOutRightOnLeaveAnimation
+  } from 'angular-animations';
 
-export const slideRightLeftAnimation = trigger('slideRightLeftAnimation', [
-    transition(':increment', slideLeft()),
-    transition(':decrement', slideRight())      // slideTo('left')
+export const slideRightLeftAnimation = trigger('slideRightLeftAnimation', [  
+    transition(':increment', fadeIn()),
+    transition(':decrement', fadeIn())      // slideTo('left')
 ]);
 
-function slideTo(direction) {
+function fadeIn() {
     const optional = { optional: true };
     return [
-        query(
-            ':enter, :leave',
-            [
-                style({
-                    position: 'absolute',
-                    top: 0,
-                    [direction]: 0,
-                    width: '100%'
-                })
-            ],
-            optional
-        ),
-        query(':enter', [style({ [direction]: '-100%' })]),
         group([
-            query(
-                ':leave',
-                [animate('600ms ease', style({ [direction]: '100%' }))],
-                optional
-            ),
-            query(':enter', [animate('600ms ease', style({ [direction]: '0%' }))])
+            query(':enter', [
+                style({ opacity: 0} ),
+                animate('0.9s ease-in-out', style({ opacity: 1 }))
+            ], { optional: true })
+        ])
+    ];
+}
+
+function slideTop() {
+    const optional = { optional: true };
+    return [
+        query(':enter, :leave', style({ position: 'fixed', height: '100vh' }), optional),
+        group([
+            query(':enter', [
+                style({transform: 'translateY(-100%)'}),
+                animate('0.5s ease-in-out', style({transform: 'translateY(0%)'}))
+            ], { optional: true }),
+            query(':leave', [
+                style({ transform: 'translateY(0%)' }),
+                animate('0.5s ease-in-out', style({ transform: 'translateY(100%)' }))
+            ], { optional: true }),
+        ])
+    ];
+}
+
+function slideBottom() {
+    const optional = { optional: true };
+    return [
+        query(':enter, :leave', style({ position: 'fixed', height: '100vh' }), optional),
+        group([
+            query(':enter', [
+                style({transform: 'translateY(100%)'}),
+                animate('0.5s ease-in-out', style({transform: 'translateY(0%)'}))
+            ], { optional: true }),
+            query(':leave', [
+                style({ transform: 'translateY(0%)' }),
+                animate('0.5s ease-in-out', style({ transform: 'translateY(-100%)' }))
+            ], { optional: true }),
         ])
     ];
 }
@@ -53,7 +82,7 @@ function slideRight() {
 function slideLeft() {
     const optional = { optional: true };
     return [
-        query(':enter, :leave', style({ position: 'fixed', width: '100%' }), { optional: true }),
+        query(':enter, :leave', style({ position: 'fixed', width: '100%' }), optional),
         group([
             query(':enter', [
                 style({ transform: 'translateX(100%)' }),
@@ -63,6 +92,32 @@ function slideLeft() {
                 style({ transform: 'translateX(0%)' }),
                 animate('0.5s ease-in-out', style({ transform: 'translateX(-100%)' }))
             ], { optional: true }),
+        ])
+    ];
+}
+
+function slideInRight() {
+    const optional = { optional: true };
+    return [
+        query(':enter, :leave', style({ position: 'fixed', width: '100%' }), optional),
+        group([
+            query(':enter', [
+                style({ transform: 'translateX(-100%)' }),
+                animate('0.5s ease-in-out', style({ transform: 'translateX(0%)' }))
+            ], { optional: true }),
+        ])
+    ];
+}
+
+function slideInLeft() {
+    const optional = { optional: true };
+    return [
+        query(':enter, :leave', style({ position: 'fixed', width: '100%' }), optional),
+        group([
+            query(':enter', [
+                style({ transform: 'translateX(100%)' }),
+                animate('0.5s ease-in-out', style({ transform: 'translateX(0%)' }))
+            ], { optional: true })
         ])
     ];
 }

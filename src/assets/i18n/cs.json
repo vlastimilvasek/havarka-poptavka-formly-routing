@@ -46,8 +46,11 @@
 	        "REQUIRED": "Vyplňte prosím toto pole.",
 			"RADIOREQUIRED": "Vyberte prosím jednu z voleb.",
 			"SELECT": "Vyberte prosím jednu variantu z nabídky.",			
+            "IC": "{{value}} není platné IČ.",
 	        "MAX": "Maximální hodnota je {{value}}.",
 	        "MIN": "Minimální hodnota je {{value}}.",
+	        "MAXLENGTH": "Maximální počet znaků je {{value}}.",
+	        "MINLENGTH": "Minimální počet znaků je {{value}}.",            
 			"RANGE": "Povolená hodnota je {{min}} - {{max}}.",
 			"EMAIL": "Zadejte prosím platnou emailovou adresu."
 		},
@@ -56,7 +59,8 @@
         "KC": "Kč",
         "CCM": "ccm",
         "KW": "kW",
-        "KG": "kg"
+        "KG": "kg",
+		"KM": "km"
     },
     "UVOD": {
 		"TITLE": "Kalkulace havarijního pojištění",
@@ -268,7 +272,7 @@
         },		
         "UVEDENIDP": {    
 	        "LABEL": "Uvedení do provozu",
-			"PLACEHOLDER": "např. 15.6.2015",
+			"PLACEHOLDER": "Vyberte kliknutím v kalendáři",
 	        "HINT": "Zadejte nebo vyberte datum prvního uvedení vozidla do provozu. Nemáte-li přesný údaj k dispozici, zadejte 1.7. a rok výroby."
         },
         "PALIVO": {    
@@ -294,9 +298,14 @@
 			"PLACEHOLDER": "např. 10 000 km",
 	        "HINT": "Vyberte, kolik km ročně s vozidlem asi tak najedete. Některé pojišťovny (Pillow, Allianz) stanovují cenu s ohledem na nájezd. Počítejte s nutností evidovat a dokládat stav tachometru."
         },
+        "TACHOMETR": {    
+	        "LABEL": "Stav tachometru",
+			"PLACEHOLDER": "např. 50 000",
+	        "HINT": ""
+        },		
         "CENA": {    
 	        "LABEL": "Cena vozidla s DPH",
-			"PLACEHOLDER": "např. 250 000 Kč",
+			"PLACEHOLDER": "např. 250 000",
 	        "HINT": "Zadejte hodnotu vozidla s DPH. Tento údaj potřebujeme pro případ havarijního pojištění a některá připojištění. Nemáte-li přesný údaj k dispozici (třeba z faktury u nově pořizovaného vozidla), zadejte aspoň odhad - následně cenu upřesníme."
         },		
 		"HMOTNOST": {    
@@ -323,12 +332,30 @@
         },		
 		"ZABEZPECENI": {    
 	        "TITLE": "Zabezpečení",			
-	        "IMOB": "",
-			"MECH": "",
-	        "SKLO": "",
-	        "ALARM": "",
-			"PASIV": "",
-	        "AKTIV": ""			
+	        "IMOB": {    
+                "LABEL": "imobilizér",
+                "HINT": ""
+            },
+	        "MECH": {    
+                "LABEL": "mechanické zabezpečení řadící páky",
+                "HINT": ""
+            },
+	        "SKLO": {    
+                "LABEL": "pískovaní skel VINem",
+                "HINT": ""
+            },
+	        "ALARM": {    
+                "LABEL": "alarm s blokováním funkcí",
+                "HINT": ""
+            },
+	        "PASIV": {    
+                "LABEL": "pasivní zabezpečení (na bázi GSM)",
+                "HINT": ""
+            },
+	        "AKTIV": {    
+                "LABEL": "aktivní zabezpečení (vyhledávání GPS)",
+                "HINT": ""
+            }		
         }		
     },
     "ADRESA": {
@@ -380,7 +407,12 @@
 	        "LABEL": "Provozovatel je shodný s pojistníkem",
 	        "PLACEHOLDER": "",
 	        "HINT": ""
-		},        
+		},
+		"VLASTNIKPROVOZOVATEL": {
+	        "LABEL": "Provozovatel je shodný s vlastníkem",
+	        "PLACEHOLDER": "",
+	        "HINT": ""
+		},                
         "PROVOZOVATEL": {
             "TITLE": "Provozovatel",
 	        "LABEL": "Provozovatel",

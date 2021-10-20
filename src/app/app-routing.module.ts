@@ -1,31 +1,26 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AppComponent } from './app.component';
+import { ZadaniComponent } from './zadani/zadani.component';
+import { ZadaniUdajeComponent } from './zadani/zadani-udaje.component';
+import { ZadaniOsobyComponent } from './zadani/zadani-osoby.component';
+import { ZadaniRozsahComponent } from './zadani/zadani-rozsah.component';
+import { ZaverComponent } from './zaver/zaver.component';
 
-const routes: Routes = [
-  {
-    path: 'zadani',
-    loadChildren: () => import('./zadani/zadani.module').then(m => m.ZadaniModule)
-  },
-  {
-    path: 'zaver',
-    loadChildren: () => import('./zaver/zaver.module').then(m => m.ZaverModule)
-  },
-  {
-    path: 'srovnani',
-    loadChildren: () => import('./srovnani/srovnani.module').then(m => m.SrovnaniModule)
-  },
-  {
-    path: 'sjednani',
-    loadChildren: () => import('./sjednani/sjednani.module').then(m => m.SjednaniModule)
-  },
-  { path: '', redirectTo: '/zadani', pathMatch: 'full'},
-  { path: '**', redirectTo: '/zadani' }  
+export const appRoutes: Routes = [
+    { path: '', component: ZadaniComponent },
+    { path: 'udaje', component: ZadaniUdajeComponent },    
+    { path: 'osoby', component: ZadaniOsobyComponent },    
+    { path: 'rozsah', component: ZadaniRozsahComponent },            
+    { path: 'zaver', component: ZaverComponent },
+    { path: '**', redirectTo: '' }      
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {
+  imports: [RouterModule.forRoot(appRoutes, {
     preloadingStrategy: PreloadAllModules,
-    relativeLinkResolution: 'legacy'
+    relativeLinkResolution: 'legacy',
+    scrollPositionRestoration: 'enabled'
 })],
   exports: [RouterModule]
 })

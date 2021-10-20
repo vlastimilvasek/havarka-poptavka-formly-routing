@@ -6,6 +6,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 export class Seznamy {
     znacka: any;
+    formlyZnacka: any;
     model: any;
     druh: any;
     rok_vyroby: any;
@@ -18,6 +19,10 @@ export class Seznamy {
         psc: any;
         castiobce: any;
     }
+    vlastnik: {
+        psc: any;
+        castiobce: any;
+    }    
     provozovatel: {
         psc: any;
         castiobce: any;
@@ -49,6 +54,7 @@ export class ParamsService {
                     { value: 190, 'label': 'Seat' }
                 ]
             }],
+            formlyZnacka: [],
             model: [],
             druh: [],
             rok_vyroby: [],
@@ -61,6 +67,10 @@ export class ParamsService {
                 psc: [],
                 castiobce: []
             },
+            vlastnik: {
+                psc: [],
+                castiobce: []
+            },            
             provozovatel: {
                 psc: [],
                 castiobce: []
@@ -165,6 +175,7 @@ export class ParamsService {
                         znacka.children.push( { value: Number(key), label: znacky[key] } );
                     });
                     this.lists.znacka.push(znacka);
+                    this.lists.formlyZnacka = znacka.children;
                 } else {
                     resp = false;
                 }                
